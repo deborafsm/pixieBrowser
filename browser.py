@@ -24,7 +24,6 @@ class MainWindow(QMainWindow):
         back_button.triggered.connect(self.browser.back)
         navbar.addAction(back_button)
 
-
         # Forward button forward one page in forward
         forward_button = QAction('Forward', self)
         forward_button.triggered.connect(self.browser.forward)
@@ -35,7 +34,17 @@ class MainWindow(QMainWindow):
         reload_page.triggered.connect(self.browser.reload)
         navbar.addAction(reload_page)
 
-    
+        #home button
+        home_button = QAction('Home', self)
+        home_button.triggered.connect(self.navigate_home)
+        navbar.addAction(home_button)
+
+    def navigate_home(self):
+        self.browser.setUrl(QUrl('https://duckduckgo.com/'))
+
+
+
+
 app = QApplication(sys.argv)
 QApplication.setApplicationName('Pixie Browser')
 window = MainWindow()
