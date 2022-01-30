@@ -36,12 +36,21 @@ class MainWindow(QMainWindow):
 
         #home button
         home_button = QAction('Home', self)
+        # navigate in chosen page by pressing enter
         home_button.triggered.connect(self.navigate_home)
         navbar.addAction(home_button)
 
-    def navigate_home(self):
-        self.browser.setUrl(QUrl('https://duckduckgo.com/'))
+        #URL bar
+        self.url_bar = QLineEdit() 
+        self.url_bar.returnPressed.connect(self.navigate_url)
+        navbar.addWidget(self.url_bar) 
 
+
+    def navigate_home(self):
+        self.browser.setUrl(QUrl('https://github.com/deborafsm'))
+    def navigate_url(self):
+        url = self.url_bar.text()   
+        self.browser.setUrl(QUrl(url))
 
 
 
