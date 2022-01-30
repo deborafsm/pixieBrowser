@@ -44,14 +44,16 @@ class MainWindow(QMainWindow):
         self.url_bar = QLineEdit() 
         self.url_bar.returnPressed.connect(self.navigate_url)
         navbar.addWidget(self.url_bar) 
-
+        #update url bar
+        self.browser.urlChanged.connect(self.update_url)
 
     def navigate_home(self):
         self.browser.setUrl(QUrl('https://github.com/deborafsm'))
     def navigate_url(self):
         url = self.url_bar.text()   
         self.browser.setUrl(QUrl(url))
-
+    def update_url(self, q):
+        self.url_bar.setText(q.toString())
 
 
 app = QApplication(sys.argv)
