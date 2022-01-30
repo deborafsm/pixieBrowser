@@ -18,11 +18,24 @@ class MainWindow(QMainWindow):
         # NavBar
         navbar = QToolBar()
         self.addToolBar(navbar)
-        # back button, back in the ini page.
+
+        # back button, back one page in back 
         back_button = QAction('Back', self)
         back_button.triggered.connect(self.browser.back)
         navbar.addAction(back_button)
 
+
+        # Forward button forward one page in forward
+        forward_button = QAction('Forward', self)
+        forward_button.triggered.connect(self.browser.forward)
+        navbar.addAction(forward_button)
+
+        # Reaload the page
+        reload_page = QAction('Reload', self)
+        reload_page.triggered.connect(self.browser.reload)
+        navbar.addAction(reload_page)
+
+    
 app = QApplication(sys.argv)
 QApplication.setApplicationName('Pixie Browser')
 window = MainWindow()
